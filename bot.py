@@ -1,5 +1,6 @@
 import discord
 from os import getenv
+from random import randint
 from dotenv import load_dotenv
 from discord.ext import commands  # for using commands.BOT() instead of discord.Client()
 
@@ -13,6 +14,7 @@ bot = commands.Bot(command_prefix='!')  # connection to discord (through the com
 @bot.event
 async def on_ready():
 	print(f'Log in successful as {bot.user}')  # bot.user is the "bot"
+	bot.change_presence(activity=discord.Game("!help"))  # will display as "playing !help"
 
 
 @bot.command()  # command information--do later
@@ -28,8 +30,10 @@ async def ping(ctx):
 	'''
 	This command is to check the latency of the bot.
 	btw, 'await' is to stop the async flow of the funct to make it do what I want it to do in the meantime.
+
+	message.author.mention mentions the author of the message
 	'''
-	await ctx.send(f"{ctx.message.author.mention}, here's the latency: {bot.latency}")
+	await ctx.send(f"Here's the latency: {bot.latency}")
 
 
 @bot.command()
@@ -51,5 +55,23 @@ async def users(ctx):
 	guild = bot.get_guild(ID)
 	await ctx.send(f"\'{guild.name}\' has {guild.member_count} members (including bots)")
 
+
+@bot.command()
+async def add(ctx, left: int, right: int):  # 'left: int' (specifying the data type of the input)
+	'''adds two numbers together'''
+	await ctx.send(f'{left} + {right} = {left + right}')
+
+
+@bot.command()
+async def roll(ctx, dice: str):
+	'''Rolls a dice in NdN format'''
+	try:
+		rolls, limit = map(int, dice.split('d'))
+	except Exception:
+		await ctx.send('Please format in NdN')
+
+	result = ', '.join(str(randint(1, limit)) for r in range(rolls))
+	await ctx.send(result)
+	
 
 bot.run(TOKEN)
