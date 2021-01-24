@@ -1,4 +1,9 @@
 # To do: For the next version, abandon the workings with mysql and use a discord server itself to read and write the data.
+# Also, I want the bot to (once it comes online) parse through its database to check wether it has left out a few entries.
+# If it did, I want it to start it's count once again.
+# So when the bot starts, one thing it needs to do is start a process of count (if required) and stop that process after the work is done.
+# This should be done while the bot is online and waiting for any other commands...but I don't want the initial process to get stuck and keep going due to the
+# new commands that are entered. So those two things should be two separate entities.
   
 # ---------- importing the important libraries --------------- #
 import discord
