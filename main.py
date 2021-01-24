@@ -1,4 +1,6 @@
-  # ---------- importing the important libraries --------------- #
+# To do: For the next version, abandon the workings with mysql and use a discord server itself to read and write the data.
+  
+# ---------- importing the important libraries --------------- #
 import discord
 import asyncio
 from os import getenv
