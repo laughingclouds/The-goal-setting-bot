@@ -21,13 +21,13 @@ TOKEN = getenv('TOKEN')  # Get TOKEN
 ID = int(getenv('ID'))
 intents = discord.Intents.default()
 intents.members = True
-bot = commands.Bot(command_prefix='!', intents=intents)  # connection to discord (through the command section module)
+bot = commands.Bot(command_prefix='gg', intents=intents)  # connection to discord (through the command section module)
 #  Note: class discord.ext.commands.Bot() is a subclass of discord.client
 
 @bot.event
 async def on_ready():
 	print(f"Logged in as {bot.user}\n{bot.user.id}\n------")  # bot.user is the 'bot'
-	await bot.change_presence(activity=discord.Game("!help"))  # will display as "playing !help"
+	await bot.change_presence(activity=discord.Game("gghelp"))  # will display as "playing !help"
   # ------------------------------------------------------------ #
 
   # --------------- the main commands -------------------------- #
